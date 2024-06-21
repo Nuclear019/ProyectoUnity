@@ -1,0 +1,3 @@
+Hola, este proyecto aún está en fase de desarrollo, por lo que puedes encontrar errores y bugs al jugarlo.
+Se agradece que todos los errores y bugs se me notifiquen.
+Muchas gracias.
