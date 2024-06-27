@@ -1,0 +1,98 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &3675175313889182437
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 6478665932877630991, guid: c916f63b0584e6c45a91d1398722f75e, type: 3}
+      propertyPath: isHidding
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6478665932877630991, guid: c916f63b0584e6c45a91d1398722f75e, type: 3}
+      propertyPath: pressedSprite
+      value: 
+      objectReference: {fileID: 21300022, guid: ae3918a914038694d852d0bb81f62473, type: 3}
+    - target: {fileID: 8774679026199600723, guid: c916f63b0584e6c45a91d1398722f75e, type: 3}
+      propertyPath: m_Name
+      value: HiddeEnviromentLever
+      objectReference: {fileID: 0}
+    - target: {fileID: 8777621275711044025, guid: c916f63b0584e6c45a91d1398722f75e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -124.36
+      objectReference: {fileID: 0}
+    - target: {fileID: 8777621275711044025, guid: c916f63b0584e6c45a91d1398722f75e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -31.161804
+      objectReference: {fileID: 0}
+    - target: {fileID: 8777621275711044025, guid: c916f63b0584e6c45a91d1398722f75e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.20059812
+      objectReference: {fileID: 0}
+    - target: {fileID: 8777621275711044025, guid: c916f63b0584e6c45a91d1398722f75e, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8777621275711044025, guid: c916f63b0584e6c45a91d1398722f75e, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8777621275711044025, guid: c916f63b0584e6c45a91d1398722f75e, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8777621275711044025, guid: c916f63b0584e6c45a91d1398722f75e, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8777621275711044025, guid: c916f63b0584e6c45a91d1398722f75e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8777621275711044025, guid: c916f63b0584e6c45a91d1398722f75e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8777621275711044025, guid: c916f63b0584e6c45a91d1398722f75e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 6478665932877630991, guid: c916f63b0584e6c45a91d1398722f75e, type: 3}
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8774679026199600723, guid: c916f63b0584e6c45a91d1398722f75e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 446398247205480191}
+  m_SourcePrefab: {fileID: 100100000, guid: c916f63b0584e6c45a91d1398722f75e, type: 3}
+--- !u!1 &5387770169174318262 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8774679026199600723, guid: c916f63b0584e6c45a91d1398722f75e, type: 3}
+  m_PrefabInstance: {fileID: 3675175313889182437}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &446398247205480191
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5387770169174318262}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf7707affe878954c84cf7f888292e0e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameObjectInteraction: {fileID: 0}
+  positionRevealHide: {fileID: 0}
+  pressedSprite: {fileID: 21300022, guid: ae3918a914038694d852d0bb81f62473, type: 3}
+  interactMenu: {fileID: 8099263934328455595}
+  isHidding: 1
+--- !u!1 &8099263934328455595 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4856716424554578766, guid: c916f63b0584e6c45a91d1398722f75e, type: 3}
+  m_PrefabInstance: {fileID: 3675175313889182437}
+  m_PrefabAsset: {fileID: 0}
