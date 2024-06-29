@@ -1,5 +1,14 @@
-Proyecto TFC de DAM.
-Videojugo de 1 jugador desarrollado con Unity y C#.
-Todavía en desarrollo, poco a poco iré subiendo actualizaciones, errores solucionados y nuevas cosas.
+# Proyecto TFC de DAM: Videojuego de 1 Jugador Desarrollado con Unity y C#
 
-Mi proyecto es un videojuego para un jugador basado en la Edad Media donde nuestro objetivo es recuperar el control del reino. En este juego manejaremos a un antiguo lider del ejercito del reino que fue desterrado a las catacumbas del castillo por influencia de un malvado mago, quien hizo que el rey ordenara su exilio.
+Actualmente en desarrollo, este proyecto irá recibiendo actualizaciones periódicas, incluyendo correcciones de errores y nuevas características.
+
+Mi proyecto es un videojuego para un solo jugador ambientado en la Edad Media. El objetivo principal del juego es recuperar el control del reino. Los jugadores tomarán el papel de un antiguo líder del ejército del reino, desterrado a las catacumbas del castillo por las maquinaciones de un malvado mago, quien manipuló al rey para ordenar su exilio.
+
+El juego ofrecerá mecánicas únicas, incluyendo:
+
+- **Rompecabezas:** Desafíos intelectuales que el jugador deberá resolver para avanzar.
+- **Acceso a Nuevas Ubicaciones y Tesoros:** Exploración de áreas ocultas y recompensas por descubrimientos.
+- **Combate y Exploración:** Batallas contra enemigos y exploración de diversos entornos.
+- **Progresión del Personaje:** Mejora de habilidades y atributos a medida que se completan objetivos y se derrotan enemigos.
+
+Los jugadores disfrutarán de entornos y niveles variados que incrementarán en dificultad y complejidad a lo largo de la aventura, proporcionando una experiencia inmersiva y desafiante.
