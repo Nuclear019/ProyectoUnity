@@ -12,7 +12,7 @@ public class DoorController : MonoBehaviour
     [SerializeField] public Sprite doorOpenedSprite;
     private bool isPlayerInRange = false;
     private bool isKeyInInventory;
-    public bool changeScene;
+    public bool saveGame = false;
     [SerializeField] GameObject neededKey;
     public List<GameObject> inventoryPlayer;
     public bool needKey;
@@ -131,6 +131,7 @@ public class DoorController : MonoBehaviour
     {
         GameObject nextDoor = GameObject.Find(doorName);
         GameManager.current.player.gameObject.transform.position = nextDoor.transform.position;
+        GameManager.current.controladorDatosJuego.GuardarDatos(player,SceneManager.GetActiveScene().buildIndex,GameManager.current.GetDefeatedBosses());
     }
 
 

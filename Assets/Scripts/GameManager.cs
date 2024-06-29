@@ -40,6 +40,7 @@ public class GameManager : MonoBehaviour
     public bool gameStarted;
     public bool loadingDead;
     public bool isBossRoom;
+    private int[] jefes = new int[4];
 
 
     public bool isPaused { get; protected set; }
@@ -94,13 +95,18 @@ public class GameManager : MonoBehaviour
     }
     public async void StartGame(DatosJuego datos, bool loading)
     {
-        if (datos.jefesEliminados != null)
+
+        foreach (int jefe in datos.jefesEliminados)
         {
-            foreach(int jefe in datos.jefesEliminados)
+            Debug.Log(jefe);
+            if (!jefe.Equals(-1))
             {
-                profilePanel.GetComponent<ProfileController>().ActiveMedal(jefe);
+                profilePanel.GetComponentInChildren<ProfileController>().ActiveMedal(jefe);
             }
+
+
         }
+
         gameStarted = true;
         datosJuego = datos;
         player.SetActive(true);
@@ -133,10 +139,18 @@ public class GameManager : MonoBehaviour
         }
         player.GetComponent<HeroKnight>().MoveToPosition(datos.posicion);
     }
+    public void SaveGame()
+    {
+        controladorDatosJuego.GuardarDatos(player, SceneManager.GetActiveScene().buildIndex, jefes);
+    }
 
     public async void NewGame()
     {
-        datosJuego = new DatosJuego(player, 3, new List<int>());
+        jefes[0] = -1;
+        jefes[1] = -1;
+        jefes[2] = -1;
+        jefes[3] = -1;
+        datosJuego = new DatosJuego(player, 3, jefes);
         gameStarted = true;
         player.SetActive(true);
         HUD.SetActive(true);
@@ -145,11 +159,12 @@ public class GameManager : MonoBehaviour
         loadingGame = false;
         datosJuego = null;
     }
-    public async void Respawn()
+    public void Respawn()
     {
         deadPanel.SetActive(false);
         Time.timeScale = 1.0f;
-        await CargarDatos();
+
+        CargarDatos();
         StartGame(datosJuego, true);
         loadingDead = false;
         isBossRoom = false;
@@ -158,21 +173,20 @@ public class GameManager : MonoBehaviour
         current.player.GetComponent<HeroKnight>().isDead = false;
     }
 
-    public async void Retry()
+    public void Retry()
     {
         deadPanel.SetActive(false);
         Time.timeScale = 1.0f;
         spawnPoint = "BoosRoom";
-        await CargarDatos();
+        CargarDatos();
         StartGame(datosJuego, false);
         loadingDead = false;
         current.player.GetComponent<HeroKnight>().isDead = false;
 
     }
-    public async Task CargarDatos()
+    public void CargarDatos()
     {
         datosJuego = controladorDatosJuego.CargarDatos();
-        await Task.CompletedTask;
     }
     public void StopGame()
     {
@@ -215,7 +229,8 @@ public class GameManager : MonoBehaviour
     public void BossDefeated(int id)
     {
         profilePanel.GetComponentInChildren<ProfileController>().ActiveMedal(id);
-        datosJuego.jefesEliminados.Add(id);
+        jefes[id] = id;
+        datosJuego.jefesEliminados = jefes;
         controladorDatosJuego.GuardarDatos(player, SceneManager.GetActiveScene().buildIndex, datosJuego.jefesEliminados);
         winPanel.SetActive(true);
         Destroy(winPanel, 3f);
@@ -242,16 +257,11 @@ public class GameManager : MonoBehaviour
 
     public void ExitGame()
     {
-        try
-        {
-            List<int> list = datosJuego.jefesEliminados;
-            controladorDatosJuego.GetComponent<ControladorDatosJuego>().GuardarDatos(player, SceneManager.GetActiveScene().buildIndex, datosJuego.jefesEliminados);
-            Application.Quit();
-        }
-        catch (Exception ex)
-        {
-            controladorDatosJuego.GetComponent<ControladorDatosJuego>().GuardarDatos(player, SceneManager.GetActiveScene().buildIndex, new List<int>());
-        }
+
+        controladorDatosJuego.GetComponent<ControladorDatosJuego>().GuardarDatos(player, SceneManager.GetActiveScene().buildIndex, datosJuego.jefesEliminados);
+        Application.Quit();
+
+
     }
     public void LoadIntroduction()
     {
@@ -277,7 +287,7 @@ public class GameManager : MonoBehaviour
 
     public IEnumerator ChangeCameraTarget(Transform newtarget)
     {
-        Time.timeScale = 0f;
+
         isPaused = true;
         virtualCamera.Follow = newtarget;
         virtualCamera.LookAt = newtarget;
@@ -286,9 +296,11 @@ public class GameManager : MonoBehaviour
         virtualCamera.Follow = player.transform;
         virtualCamera.LookAt = player.transform;
         virtualCamera.m_Lens.OrthographicSize = 5f;
-        Time.timeScale = 1f;
-        isPaused =false;
+        isPaused = false;
     }
 
-
+    public int[] GetDefeatedBosses()
+    {
+        return jefes;
+    }
 }

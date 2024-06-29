@@ -63,7 +63,6 @@ public class HeroKnight : MonoBehaviour
         m_wallSensorL2 = transform.Find("WallSensor_L2").GetComponent<Sensor_HeroKnight>();
         m_audioSource = GetComponent<AudioSource>();
         barraVida.fillAmount = vidaActual / vidaMaxima;
-
     }
     // Update is called once per frame
     void Update()
@@ -165,7 +164,7 @@ public class HeroKnight : MonoBehaviour
                 m_body2d.velocity = new Vector2(0, m_body2d.velocity.y);
 
             }
-            
+
             //Set AirSpeed in animator
             m_animator.SetFloat("AirSpeedY", m_body2d.velocity.y);
 
@@ -255,19 +254,21 @@ public class HeroKnight : MonoBehaviour
     }
     public void SpikesDamage(float damage)
     {
-        vidaActual -= damage;
-        m_audioSource.clip = hurtSound;
-        m_audioSource.Play();
-        if (vidaActual <= 0)
+        if (!isDead)
         {
-            isDead = true;
-            Invoke("Dead", 2f);
-            m_animator.SetTrigger("Death");
-
-        }
-        else
-        {
-            m_animator.SetTrigger("Hurt");
+            vidaActual -= damage;
+            m_audioSource.clip = hurtSound;
+            m_audioSource.Play();
+            if (vidaActual <= 0)
+            {
+                isDead = true;
+                Invoke("Dead",0.8f);
+                m_animator.SetTrigger("Death");
+            }
+            else
+            {
+                m_animator.SetTrigger("Hurt");
+            }
         }
     }
 
@@ -290,6 +291,7 @@ public class HeroKnight : MonoBehaviour
     void Dead()
     {
         GameManager.current.StopGame();
+
     }
 
 

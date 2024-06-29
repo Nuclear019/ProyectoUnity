@@ -56,6 +56,7 @@ public class ProfileController : MonoBehaviour
     public void ActiveMedal(int id)
     {
         medals[id].SetActive(true);
+        Debug.Log(medals[id].name);
     }
    
 }

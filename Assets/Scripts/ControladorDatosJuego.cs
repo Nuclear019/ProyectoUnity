@@ -35,7 +35,7 @@ public class ControladorDatosJuego : MonoBehaviour
             return null;
         }
     }
-    public void GuardarDatos(GameObject player,int scene, List<int> defeadedBosses)
+    public void GuardarDatos(GameObject player,int scene,int[] defeadedBosses)
     {
         DatosJuego datos = new DatosJuego(player,scene,defeadedBosses);
         FileStream fileStream = new FileStream(dataPath, FileMode.Create);

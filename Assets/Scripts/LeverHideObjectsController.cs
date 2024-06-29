@@ -5,38 +5,37 @@ using UnityEngine;
 public class LeverHideObjectsController : MonoBehaviour
 {
     [SerializeField] GameObject gameObjectInteraction;
-    [SerializeField] GameObject positionRevealHide;
+    [SerializeField] Transform positionRevealHide;
     [SerializeField] Sprite pressedSprite;
     [SerializeField] GameObject interactMenu;
-    private bool leverPressed;
     private bool isPLayerInRange;
     public bool isHidding;
     Transform newTarget;
     Vector3 actualPosition;
     void Start()
     {
-        newTarget = GameObject.FindGameObjectWithTag("NewTarget").GetComponent<Transform>();
+        newTarget = GameObject.FindWithTag("NewTarget").GetComponent<Transform>();
         actualPosition = gameObject.transform.position;
+
     }
     void Update()
     {
-
         if (isPLayerInRange)
         {
-            Interact();
-            if (leverPressed)
+            if (Input.GetKeyDown(KeyCode.Q))
             {
+                newTarget.position = positionRevealHide.position;
+                gameObject.transform.position = new Vector3(actualPosition.x, actualPosition.y - .15f, actualPosition.z);
+                GetComponent<SpriteRenderer>().sprite = pressedSprite;
                 StartCoroutine(GameManager.current.ChangeCameraTarget(newTarget));
-                newTarget.position = positionRevealHide.transform.position;
                 StartCoroutine(showHiddenObject());
-                leverPressed = false;
             }
         }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player") && !leverPressed)
+        if (collision.CompareTag("Player"))
         {
             isPLayerInRange = true;
             interactMenu.SetActive(true);
@@ -44,7 +43,7 @@ public class LeverHideObjectsController : MonoBehaviour
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player") && !leverPressed)
+        if (collision.CompareTag("Player"))
         {
             isPLayerInRange = false;
             interactMenu.SetActive(false);
@@ -52,7 +51,8 @@ public class LeverHideObjectsController : MonoBehaviour
     }
     IEnumerator showHiddenObject()
     {
-        yield return new WaitForSeconds(1f);
+
+        yield return new WaitForSecondsRealtime(1f);
         if (isHidding)
         {
             gameObjectInteraction.SetActive(true);
@@ -64,13 +64,5 @@ public class LeverHideObjectsController : MonoBehaviour
         }
 
     }
-    void Interact()
-    {
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            gameObject.transform.position = new Vector3(actualPosition.x, actualPosition.y - .15f, actualPosition.z);
-            leverPressed = true;
-            GetComponent<SpriteRenderer>().sprite = pressedSprite;
-        }
-    }
+  
 }

@@ -10,18 +10,17 @@ public class DatosJuego
     public int escena;
     public List<Item> inventario = new List<Item>();
     public List<Item> equipamiento = new List<Item>();
-    public List<int> jefesEliminados = new List<int>();
+    public int[] jefesEliminados = new int[4];
 
-    public DatosJuego(GameObject player, int scene, List<int> defeadedBosses)
+    public DatosJuego(GameObject player, int scene, int[] defeatedBosses)
     {
         vida = player.GetComponent<HeroKnight>().vidaActual;
-        jefesEliminados = defeadedBosses;
+        jefesEliminados = defeatedBosses;
         escena = scene;
         posicion[0] = player.transform.position.x;
         posicion[1] = player.transform.position.y;
         posicion[2] = player.transform.position.z;
         List<GameObject> inv = player.GetComponent<InventoryController>().inventory;
-        Debug.Log("Guardando Datos");
         foreach (GameObject inventory in inv)
         {
             if (inventory.GetComponent<Image>().sprite != null)

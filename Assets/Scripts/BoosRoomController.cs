@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class BoosRoomController : MonoBehaviour
@@ -17,6 +18,8 @@ public class BoosRoomController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
+
         if (GameManager.current.datosJuego.jefesEliminados.Contains(boosID))
         {
             isBoosDefeated = true;

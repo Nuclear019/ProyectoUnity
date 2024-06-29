@@ -18,8 +18,8 @@ public class HeroHandlerPosition : MonoBehaviour
     void Start()
     {
         player = GameObject.FindWithTag("Player");
-        Debug.Log(GameManager.current.loadingGame);
-        Debug.Log(GameManager.current.spawnPoint);
+        player.GetComponent<Animator>().SetInteger("AnimState", 0);
+
         if (!GameManager.current.loadingGame)
         {
             GameObject spawn = GameObject.Find(GameManager.current.spawnPoint);
@@ -34,6 +34,8 @@ public class HeroHandlerPosition : MonoBehaviour
         audioSource.clip = gameMusicClip;
         audioSource.Play();
         audioSource.loop = true;
+        isDatosGuardados = false;
+        Debug.Log("Cargando Escena");
 
     }
     private void Update()
@@ -41,23 +43,8 @@ public class HeroHandlerPosition : MonoBehaviour
         audioSource.volume = GameManager.current.musicVolumeValue;
         if (!isDatosGuardados)
         {
-            try
-            {
-                List<int> list = GameManager.current.datosJuego.jefesEliminados;
-                if (list == null)
-                {
-                    GameManager.current.controladorDatosJuego.GetComponent<ControladorDatosJuego>().GuardarDatos(player, SceneManager.GetActiveScene().buildIndex, new List<int>());
-
-                }
-                else
-                {
-                    GameManager.current.controladorDatosJuego.GetComponent<ControladorDatosJuego>().GuardarDatos(player, SceneManager.GetActiveScene().buildIndex, list);
-
-                }
-                isDatosGuardados = true;
-            }
-            catch (Exception e) { }
-
+            GameManager.current.controladorDatosJuego.GetComponent<ControladorDatosJuego>().GuardarDatos(player, SceneManager.GetActiveScene().buildIndex, GameManager.current.GetDefeatedBosses());
+            isDatosGuardados = true;
         }
     }
     public void ChangeAudio(AudioClip audio)

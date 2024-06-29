@@ -27,6 +27,8 @@ public class LoadingManager : MonoBehaviour
     {
         progressText.text = "Cargando... 00%";
         asyncOperation = SceneManager.LoadSceneAsync(sceneName);
+
+
         asyncOperation.allowSceneActivation = false;
         while (!asyncOperation.isDone)
         {

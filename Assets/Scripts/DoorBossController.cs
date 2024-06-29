@@ -35,7 +35,7 @@ public class DoorBossController : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (leverPressed)
+        if (collision.CompareTag("Player")&& leverPressed)
         {
             playerInRange = true;
             interactMenu.SetActive(true);
@@ -43,7 +43,7 @@ public class DoorBossController : MonoBehaviour
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (leverPressed)
+        if (collision.CompareTag("Player") && leverPressed)
         {
             playerInRange = false;
 

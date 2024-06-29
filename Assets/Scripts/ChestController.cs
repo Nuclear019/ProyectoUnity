@@ -7,7 +7,7 @@ public class ChestController : MonoBehaviour
 {
     [SerializeField] GameObject interactMenu;
     private bool openChest = false;
-    private bool opened;
+    private bool opened  = false; 
     public Sprite chestOpen;
     [SerializeField] GameObject dropObject;
     // Start is called before the first frame update
@@ -20,7 +20,7 @@ public class ChestController : MonoBehaviour
     void Update()
     {
 
-        if (openChest)
+        if (openChest && !opened)
         {
             if (Input.GetKeyDown(KeyCode.Q))
             {

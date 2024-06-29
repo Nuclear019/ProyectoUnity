@@ -14,14 +14,14 @@ public class LeverController : MonoBehaviour
     private bool leverPressed;
     private bool isPLayerInRange;
     public bool isHidding;
-    private bool changeObjetive;
     Transform newTarget;
     Vector3 actualPosition;
     // Start is called before the first frame update
     void Start()
     {
-        newTarget = GameObject.FindGameObjectWithTag("NewTarget").GetComponent<Transform>();
+        newTarget = GameObject.FindWithTag("NewTarget").GetComponent<Transform>();
         actualPosition = gameObject.transform.position;
+
     }
 
     // Update is called once per frame
@@ -29,21 +29,25 @@ public class LeverController : MonoBehaviour
     {
         if (isPLayerInRange)
         {
-            Interact();
-            if (changeObjetive && leverPressed)
+            if (Input.GetKeyDown(KeyCode.Q))
             {
                 newTarget.position = gameObjectInteraction.transform.position;
                 StartCoroutine(GameManager.current.ChangeCameraTarget(newTarget));
-                changeObjetive = false;
                 gameObjectInteraction.GetComponent<DoorBossController>().leverPressed = true;
-                leverPressed = false;
+
+                gameObject.transform.position = new Vector3(actualPosition.x, actualPosition.y - .15f, actualPosition.z);
+                GetComponent<SpriteRenderer>().sprite = pressedSprite;
             }
+
+
+
+            
         }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player") && !leverPressed)
+        if (collision.CompareTag("Player"))
         {
             isPLayerInRange = true;
             interactMenu.SetActive(true);
@@ -51,23 +55,11 @@ public class LeverController : MonoBehaviour
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player") && !leverPressed)
+        if (collision.CompareTag("Player"))
         {
             isPLayerInRange = false;
             interactMenu.SetActive(false);
         }
     }
 
-
-
-    void Interact()
-    {
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            gameObject.transform.position = new Vector3(actualPosition.x, actualPosition.y - .15f, actualPosition.z);
-            leverPressed = true;
-            changeObjetive = true;
-            GetComponent<SpriteRenderer>().sprite = pressedSprite;
-        }
-    }
 }
